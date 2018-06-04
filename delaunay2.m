@@ -42,9 +42,10 @@ edgep= [];
 bt = [];
 gt = [];
 bt_edges = [];
-for i1 = 1:3
-%     hold on;
-figure;
+for i1 = 1:8
+    fprintf('\n----------loopstart--------------\n')
+    hold on;
+% figure;
     scatter(pts(i1,1),pts(i1,2),'g');
     for j = 1:size(tri,1)           % for loop for triangles
         [center,r] = circumc(pts_new(tri(j,1),1:2),...
@@ -53,28 +54,31 @@ figure;
         
         if (pts(i1,1)-center(1))^2 + (pts(i1,2)-center(2))^2-r^2 <0
             fprintf('\ninside the circle\n');
-            bt = [bt;tri(j,:)];
-            bt_edges = [bt_edges;bt(1,1),bt(1,2);bt(1,1),bt(1,3)...
-                ;bt(1,2),bt(1,3)];
+            bt = [bt;tri(j,:)]
+            bt_edges = [bt_edges;tri(j,1),tri(j,2);tri(j,1),tri(j,3)...
+                ;tri(j,2),tri(j,3)]
+            
         else
             fprintf('\non or outside the circle\n');
             gt = [gt;tri(j,:)]
         end
     end
+    
         for i = 1:size(bt_edges,1)
             if bt_edges(i,1)>bt_edges(i,2)
                 bt_edges(i,:) = fliplr(bt_edges(i,:));
             end
         end
-    
+    bt_edges
 
-        chk = bt_edges
+        
     for i = 1:size(bt_edges,1)
         uval = ismember(bt_edges,bt_edges(i,:),'rows');
         if sum(uval)==1
-            edgep = [edgep;bt_edges(i,:)]     %edge of polygon
+            edgep = [edgep;bt_edges(i,:)];     %edge of polygon
         end
     end
+    edgep
     
     %plotting polygon
      for k1 = 1: size(edgep,1)
@@ -85,7 +89,7 @@ figure;
     
     %triangulation
     tri = [edgep,i1.*ones(size(edgep,1),1)]
-    
+    tri = [tri;gt]
     % potting triangles
     
     for k = 1: size(tri,1)
@@ -97,19 +101,30 @@ figure;
     
     
     bt = [];
-    bad_edges = [];
+    bt_edges = [];
     edgep = [];
 end
 
-% figure;
-% scatter(pts(:,1),pts(:,2),'.'); 
-% hold on;
-% for k = 1: size(gt,1)
-%         plot_pts = [pts_new(gt(k,1),1:2);pts_new(gt(k,2),1:2);...
-%             pts_new(gt(k,3),1:2);pts_new(gt(k,1),1:2)];
-%         hold on;
-%         plot(plot_pts(:,1),plot_pts(:,2),'k')
-% end
+gt_new = [];
+for i = 1:size(gt,1)
+   if gt(i,1)~=9 && gt(i,1)~=10 && gt(i,1)~=11
+       if gt(i,2)~=9 && gt(i,2)~=10 && gt(i,2)~=11
+           if gt(i,3)~=9 && gt(i,3)~=10 && gt(i,3)~=11
+    gt_new = [gt_new;gt(i,:)];
+           end
+       end
+   end
+end
+gt_new = unique(gt_new,'rows')
+figure;
+scatter(pts(:,1),pts(:,2),'.'); 
+hold on;
+for k = 1: size(gt_new,1)
+        plot_pts = [pts_new(gt_new(k,1),1:2);pts_new(gt_new(k,2),1:2);...
+            pts_new(gt_new(k,3),1:2);pts_new(gt_new(k,1),1:2)];
+        hold on;
+        plot(plot_pts(:,1),plot_pts(:,2),'k')
+end
     
 
 % hold on;
