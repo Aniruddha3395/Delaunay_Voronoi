@@ -3,7 +3,7 @@ function [center,r] = circumc(p1,p2,p3)
 % circumcenter for triangle
 
 tri = [p1;p2;p3;p1];
-plot(tri(:,1),tri(:,2))           %plotting triangle
+% plot(tri(:,1),tri(:,2))           %plotting triangle
 % xlim([-20,20]);
 % ylim([-20,20]);
 
