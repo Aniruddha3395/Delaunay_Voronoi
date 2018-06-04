@@ -7,5 +7,5 @@ x = R*cos(I)+C(1);
 x = [x;x(1,:)];         %x-coordinates
 y = R*sin(I)+C(2);
 y = [y;y(1,:)];         %y-coordinates
-circle_plot = plot(x,y,'b');
+circle_plot = plot(x,y,'Color',[0.8,0.8,0.8]);
 end
