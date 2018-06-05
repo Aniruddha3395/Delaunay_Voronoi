@@ -78,7 +78,7 @@ for k = 1: size(tri_new,1)
     hold on;
     plot(plot_pts(:,1),plot_pts(:,2),'k')
 end
-legend('delaunay triangulation by DelaunayMAIN')
+% legend('delaunay triangulation by DelaunayMAIN')
 
 
 end
