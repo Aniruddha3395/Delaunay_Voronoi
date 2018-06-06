@@ -6,14 +6,25 @@ close all;
 pts = [1,1;
     6,16;
     6,6;
-    15,3];%;
-%     12,1;
-%     4,8;
-%     7,9;
-%     9,3
-%     ];
+    15,3;
+    12,1;
+    4,8;
+    7,9;
+    9,3
+    ];
+
+
+hold on;
 pts = [pts,[1:size(pts,1)]'];   % all points are denoted by [x y index]
 spacing  = 2000;
+tri_new = Delaunay_MAIN(pts,spacing);
+center_all = [];
+r_all = [];
+
+hold on;
+voronoi(pts(:,1),pts(:,2))
+
+figure;
 tri_new = Delaunay_MAIN(pts,spacing);
 center_all = [];
 r_all = [];
@@ -52,6 +63,19 @@ plot(edge_bisect2in(:,1),edge_bisect2in(:,2))
 hold on;
 plot(edge_bisect3in(:,1),edge_bisect3in(:,2))
 
+
+% xo1 = 2*mp12(1)-xcg;
+% xo2 = 2*mp13(1)-xcg;
+% xo3 = 2*mp23(1)-xcg;
+% yo1 = 2*mp12(2)-ycg;
+% yo2 = 2*mp13(2)-ycg;
+% yo3 = 2*mp23(2)-ycg;
+% hold on;
+% plot([xo1;mp12(1)],[[yo1;mp12(2)]])
+% hold on;
+% plot([xo2;mp13(1)],[[yo2;mp13(2)]])
+% hold on;
+% plot([xo3;mp23(1)],[[yo3;mp23(2)]])
 
 center_all = [center_all;center];
 r_all = [r_all;r];

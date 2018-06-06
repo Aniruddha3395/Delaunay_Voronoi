@@ -15,7 +15,7 @@ c = det(-[p1(1)^2+p1(2)^2,p1(1),p1(2);p2(1)^2+p2(2)^2,p2(1),p2(2);p3(1)^2+p3(2)^
 % center and radius values
 center = [-(bx/(2*a)),-(by/(2*a))];
 r = sqrt((bx^2)+(by^2)-(4*a*c))/(2*abs(a));         
-hold on;                          %plotting circumcircle
-plotc(center,r);
+% hold on;                          %plotting circumcircle
+% plotc(center,r);
 
 end
