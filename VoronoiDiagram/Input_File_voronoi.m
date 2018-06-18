@@ -13,7 +13,7 @@ pts = [1,1;
     9,3
     ];
 pts = unique(randi([1,20],1000,2),'rows'); 
-spacing  = 2000;
+spacing  = 2000;        % increase this to accomoate all points inside super triangle
 
 %% Voronoi diagram by In-Built MATLAB function
 tic;
